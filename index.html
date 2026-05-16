@@ -5,40 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stock Analyzer Pro — วิเคราะห์หุ้นเมกาแบบ AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --blue:#1a56db;
-  --blue-light:#e8f0fe;
-  --blue-mid:#3b74e0;
-  --green:#14803c;
-  --green-light:#e6f4ea;
-  --red:#c5221f;
-  --red-light:#fce8e6;
-  --amber:#8a5700;
-  --amber-light:#fef3e2;
-  --ink:#0d1117;
-  --ink2:#3c4450;
-  --ink3:#6b7585;
-  --surface:#ffffff;
-  --surface2:#f6f8fb;
-  --surface3:#edf1f7;
-  --border:#dde3ed;
-  --border2:#c8d0df;
-  --mono:'DM Mono',monospace;
-  --serif:'Instrument Serif',serif;
-  --sans:'DM Sans',sans-serif;
-  --radius:10px;
-  --radius-lg:16px;
+  --blue:#1a56db;--blue-light:#e8f0fe;--green:#14803c;--green-light:#e6f4ea;
+  --red:#c5221f;--red-light:#fce8e6;--amber:#8a5700;--amber-light:#fef3e2;
+  --ink:#0d1117;--ink2:#3c4450;--ink3:#6b7585;
+  --surface:#ffffff;--surface2:#f6f8fb;--surface3:#edf1f7;
+  --border:#dde3ed;--border2:#c8d0df;
+  --mono:'DM Mono',monospace;--sans:'DM Sans',sans-serif;
+  --radius:10px;--radius-lg:16px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--sans);background:var(--surface2);color:var(--ink);min-height:100vh}
 
-/* ── GATE ── */
 #gate{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem;background:var(--ink)}
 .gate-box{background:var(--surface);border-radius:var(--radius-lg);padding:2.5rem;max-width:400px;width:100%;text-align:center}
 .gate-logo{font-family:var(--mono);font-size:13px;color:var(--blue);letter-spacing:2px;margin-bottom:1.5rem}
-.gate-title{font-family:var(--serif);font-size:28px;color:var(--ink);margin-bottom:.5rem}
+.gate-title{font-size:26px;font-weight:500;color:var(--ink);margin-bottom:.5rem}
 .gate-sub{font-size:14px;color:var(--ink3);margin-bottom:1.5rem;line-height:1.6}
 .gate-input{width:100%;padding:12px 16px;border:1px solid var(--border2);border-radius:var(--radius);font-size:15px;font-family:var(--sans);color:var(--ink);background:var(--surface2);margin-bottom:10px;outline:none;transition:border .2s}
 .gate-input:focus{border-color:var(--blue)}
@@ -47,144 +31,168 @@ body{font-family:var(--sans);background:var(--surface2);color:var(--ink);min-hei
 .gate-err{font-size:13px;color:var(--red);margin-top:8px;display:none}
 .gate-hint{font-size:12px;color:var(--ink3);margin-top:1rem}
 
-/* ── APP ── */
 #app{display:none;min-height:100vh}
 
-/* NAV */
-nav{background:var(--ink);padding:0 2rem;display:flex;align-items:center;height:52px;gap:1.5rem;position:sticky;top:0;z-index:100}
-.nav-logo{font-family:var(--mono);font-size:13px;color:#fff;letter-spacing:2px;opacity:.9}
-.nav-ticker{font-family:var(--mono);font-size:16px;color:#fff;font-weight:500;flex:1;background:none;border:none;outline:none;letter-spacing:3px;text-transform:uppercase}
-.nav-ticker::placeholder{color:rgba(255,255,255,.3)}
-.nav-score{display:flex;align-items:center;gap:8px;margin-left:auto}
-.score-ring{width:38px;height:38px;border-radius:50%;border:2px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;font-weight:500;color:#fff;transition:all .3s}
-.score-ring.high{border-color:#4ade80}
-.score-ring.mid{border-color:#fbbf24}
-.score-ring.low{border-color:#f87171}
-.nav-label{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.5px}
+nav{background:var(--ink);padding:0 1.5rem;display:flex;align-items:center;height:54px;gap:12px;position:sticky;top:0;z-index:100}
+.nav-logo{font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.4);letter-spacing:2px}
+.nav-search{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:0 12px;height:36px;flex:1;max-width:280px}
+.nav-search input{background:none;border:none;outline:none;font-family:var(--mono);font-size:16px;font-weight:500;color:#fff;letter-spacing:3px;text-transform:uppercase;width:100%}
+.nav-search input::placeholder{color:rgba(255,255,255,.25);letter-spacing:1px;font-size:13px;font-weight:400}
+.fetch-btn{padding:7px 16px;background:var(--blue);color:#fff;border:none;border-radius:7px;font-size:13px;font-family:var(--sans);font-weight:500;cursor:pointer;transition:opacity .2s;white-space:nowrap}
+.fetch-btn:hover{opacity:.85}
+.fetch-btn:disabled{opacity:.4;cursor:not-allowed}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.score-label{font-size:10px;color:rgba(255,255,255,.35);letter-spacing:.5px;margin-bottom:2px;text-align:center}
+.score-ring{width:38px;height:38px;border-radius:50%;border:2px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;font-weight:500;color:#fff;transition:all .3s}
+.score-ring.high{border-color:#4ade80;color:#4ade80}
+.score-ring.mid{border-color:#fbbf24;color:#fbbf24}
+.score-ring.low{border-color:#f87171;color:#f87171}
 
-/* MAIN */
-main{max-width:900px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+.loading-bar{height:3px;background:var(--blue);width:0;transition:width .4s;position:fixed;top:54px;left:0;z-index:200}
 
-/* TABS */
+main{max-width:960px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+
+.stock-header{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem 1.5rem;margin-bottom:1.25rem;display:none}
+.stock-header.show{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.stock-name{font-size:20px;font-weight:500;color:var(--ink)}
+.stock-price{font-family:var(--mono);font-size:26px;font-weight:500;color:var(--ink)}
+.stock-change{font-size:13px;font-weight:500;padding:3px 10px;border-radius:20px}
+.up{background:var(--green-light);color:var(--green)}
+.dn{background:var(--red-light);color:var(--red)}
+.stock-meta{display:flex;gap:1.5rem;flex-wrap:wrap;margin-left:auto}
+.meta-item{text-align:right}
+.meta-label{font-size:11px;color:var(--ink3)}
+.meta-val{font-size:13px;font-weight:500;font-family:var(--mono);color:var(--ink)}
+
 .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:1.5rem;overflow-x:auto}
-.tab{padding:10px 20px;font-size:14px;font-weight:400;color:var(--ink3);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all .2s;font-family:var(--sans)}
+.tab{padding:10px 20px;font-size:14px;color:var(--ink3);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all .2s;font-family:var(--sans)}
 .tab.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:500}
-.tab:hover:not(.active){color:var(--ink2)}
-.section{display:none}
-.section.active{display:block}
 
-/* GRID */
+.section{display:none}.section.active{display:block}
+
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1rem}
 @media(max-width:600px){.g2,.g3{grid-template-columns:1fr}}
 
-/* CARDS */
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem}
-.card-title{font-size:11px;font-weight:500;color:var(--ink3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:.875rem;display:flex;align-items:center;gap:6px}
+.card-title{font-size:11px;font-weight:500;color:var(--ink3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:.875rem}
 
-/* FIELD */
-.field-row{display:flex;align-items:center;padding:5px 0;border-bottom:1px solid var(--surface3)}
+.field-row{display:flex;align-items:center;padding:6px 0;border-bottom:1px solid var(--surface3)}
 .field-row:last-child{border:none}
 .field-key{font-size:13px;color:var(--ink3);flex:1}
-.field-inp{width:100px;text-align:right;border:none;background:transparent;font-size:13px;font-family:var(--mono);color:var(--ink);padding:2px 0;outline:none}
-.field-inp:focus{color:var(--blue)}
-.field-inp[type=text]{width:120px;text-align:right;font-family:var(--sans)}
-select.field-inp{cursor:pointer;font-family:var(--sans);text-align:right}
+.field-val{font-size:13px;font-weight:500;font-family:var(--mono);color:var(--ink);text-align:right;min-width:80px}
+.field-val.pos{color:var(--green)}.field-val.neg{color:var(--red)}.field-val.neutral{color:var(--ink3)}
 
-/* SIGNALS */
-.sig{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px}
+.sig{display:inline-flex;align-items:center;font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px}
 .sig.bull{background:var(--green-light);color:var(--green)}
 .sig.bear{background:var(--red-light);color:var(--red)}
 .sig.neut{background:var(--surface3);color:var(--ink3)}
-.sig.info{background:var(--blue-light);color:var(--blue)}
 .sigs{display:flex;gap:8px;flex-wrap:wrap;margin-top:.75rem}
 
-/* METER */
-.meter{margin:8px 0 12px}
+.meter{margin:6px 0 10px}
 .meter-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--ink3);margin-bottom:4px}
 .meter-track{height:5px;background:var(--surface3);border-radius:3px;overflow:hidden}
-.meter-fill{height:100%;border-radius:3px;transition:width .4s,background .4s}
+.meter-fill{height:100%;border-radius:3px;transition:width .6s,background .4s}
 
-/* STARS */
 .stars{display:flex;gap:5px;margin-top:6px}
-.star{font-size:22px;cursor:pointer;color:var(--border2);transition:color .15s;user-select:none;line-height:1}
+.star{font-size:22px;cursor:pointer;color:var(--border2);transition:color .15s;user-select:none}
 .star.on{color:#f59e0b}
 
-/* TAGS */
 .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .tag{font-size:12px;padding:3px 10px;border-radius:20px;cursor:pointer;border:1px solid var(--border);color:var(--ink3);background:var(--surface2);transition:all .15s}
 .tag.on{background:var(--blue-light);color:var(--blue);border-color:#a8c4f5}
 
-/* DOTS RATING */
 .dots{display:flex;gap:6px;margin-top:6px}
 .dot-r{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--ink3);background:var(--surface2);transition:all .15s}
 .dot-r.on{background:var(--blue-light);color:var(--blue);border-color:#a8c4f5}
 
-/* VERDICT */
 .verdict-btns{display:flex;gap:10px;margin-top:.75rem}
-.vbtn{flex:1;padding:10px;border:1px solid var(--border);border-radius:var(--radius);font-size:14px;font-weight:400;font-family:var(--sans);cursor:pointer;background:var(--surface2);color:var(--ink2);transition:all .2s}
-.vbtn:hover{border-color:var(--border2)}
+.vbtn{flex:1;padding:10px;border:1px solid var(--border);border-radius:var(--radius);font-size:14px;font-family:var(--sans);cursor:pointer;background:var(--surface2);color:var(--ink2);transition:all .2s}
 .vbtn.buy{background:var(--green-light);color:var(--green);border-color:#a8d5b8;font-weight:500}
 .vbtn.hold{background:var(--amber-light);color:var(--amber);border-color:#f5d28a;font-weight:500}
 .vbtn.sell{background:var(--red-light);color:var(--red);border-color:#f5b8b7;font-weight:500}
 
-/* TEXTAREA */
 textarea{width:100%;min-height:80px;padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius);font-size:13px;font-family:var(--sans);color:var(--ink);background:var(--surface2);resize:vertical;outline:none;margin-top:8px;line-height:1.6}
 textarea:focus{border-color:var(--blue)}
 
-/* SUMMARY CARDS */
 .sum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem}
 .sum-card{background:var(--surface2);border-radius:var(--radius);padding:1rem;text-align:center}
 .sum-num{font-size:26px;font-weight:500;font-family:var(--mono);color:var(--ink)}
 .sum-sub{font-size:11px;color:var(--ink3);margin-top:2px}
 
-/* BUTTONS */
+.field-inp{width:100px;text-align:right;border:none;background:transparent;font-size:13px;font-family:var(--mono);color:var(--ink);padding:2px 0;outline:none}
+.field-inp:focus{color:var(--blue)}
+select.field-inp{cursor:pointer;font-family:var(--sans)}
+
 .btn-row{display:flex;gap:10px;justify-content:flex-end;margin-top:1.5rem;flex-wrap:wrap}
 .btn{display:inline-flex;align-items:center;gap:6px;padding:9px 20px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:var(--sans);cursor:pointer;background:var(--surface);color:var(--ink2);transition:all .2s}
 .btn:hover{background:var(--surface3)}
 .btn-primary{background:var(--blue);color:#fff;border-color:var(--blue)}
 .btn-primary:hover{opacity:.88}
+.rr-display{font-size:14px;font-weight:500;font-family:var(--mono);color:var(--blue);margin-top:4px}
 
-/* SECTION HEADER */
+.empty-state{text-align:center;padding:3rem 1rem;color:var(--ink3)}
+.empty-icon{font-size:48px;margin-bottom:1rem;opacity:.3}
+.empty-title{font-size:16px;font-weight:500;color:var(--ink2);margin-bottom:.5rem}
+.empty-sub{font-size:13px;line-height:1.6}
 .sec-head{margin-bottom:1.25rem}
 .sec-head h2{font-size:18px;font-weight:500;color:var(--ink)}
 .sec-head p{font-size:13px;color:var(--ink3);margin-top:3px}
 
-/* TOAST */
 #toast{position:fixed;bottom:2rem;right:2rem;background:var(--ink);color:#fff;padding:10px 20px;border-radius:var(--radius);font-size:13px;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;z-index:999}
 #toast.show{opacity:1;transform:translateY(0)}
-
-/* PRICE TARGET */
-.rr-display{font-size:14px;font-weight:500;font-family:var(--mono);color:var(--blue);margin-top:4px}
 </style>
 </head>
 <body>
 
-<!-- ── GATE ── -->
 <div id="gate">
   <div class="gate-box">
     <div class="gate-logo">STOCK ANALYZER PRO</div>
     <h1 class="gate-title">ยินดีต้อนรับ</h1>
-    <p class="gate-sub">ใส่รหัสที่ได้รับหลังจากซื้อ<br>เพื่อเข้าใช้งาน template</p>
+    <p class="gate-sub">ใส่รหัสที่ได้รับหลังจากซื้อ<br>เพื่อเข้าใช้งาน</p>
     <input class="gate-input" id="pwInput" type="password" placeholder="รหัสผ่าน" onkeydown="if(event.key==='Enter')checkPw()">
     <button class="gate-btn" onclick="checkPw()">เข้าใช้งาน →</button>
-    <div class="gate-err" id="gateErr">รหัสไม่ถูกต้อง กรุณาลองใหม่</div>
+    <div class="gate-err" id="gateErr">รหัสไม่ถูกต้อง</div>
     <p class="gate-hint">ซื้อแล้วยังไม่มีรหัส? ติดต่อทาง TikTok DM</p>
   </div>
 </div>
 
-<!-- ── APP ── -->
 <div id="app">
+<div class="loading-bar" id="loadBar"></div>
 <nav>
   <span class="nav-logo">SAP</span>
-  <input class="nav-ticker" id="tickerInput" placeholder="AAPL" maxlength="6" oninput="this.value=this.value.toUpperCase();updateScore()">
-  <div class="nav-score">
-    <span class="nav-label">score</span>
-    <div class="score-ring" id="scoreRing">—</div>
+  <div class="nav-search">
+    <input id="tickerInput" placeholder="พิมพ์ชื่อหุ้น เช่น NVDA" maxlength="6"
+      onkeydown="if(event.key==='Enter')fetchAll()"
+      oninput="this.value=this.value.toUpperCase()">
+  </div>
+  <button class="fetch-btn" onclick="fetchAll()" id="fetchBtn">ดึงข้อมูล →</button>
+  <div class="nav-right">
+    <div>
+      <div class="score-label">score</div>
+      <div class="score-ring" id="scoreRing">—</div>
+    </div>
   </div>
 </nav>
 
 <main>
+<div class="stock-header" id="stockHeader">
+  <div>
+    <div class="stock-name" id="hName">—</div>
+    <div style="font-size:12px;color:var(--ink3)" id="hSector">—</div>
+  </div>
+  <div>
+    <div class="stock-price" id="hPrice">—</div>
+    <span class="stock-change" id="hChange">—</span>
+  </div>
+  <div class="stock-meta">
+    <div class="meta-item"><div class="meta-label">Market Cap</div><div class="meta-val" id="hMcap">—</div></div>
+    <div class="meta-item"><div class="meta-label">52w High</div><div class="meta-val" id="h52h">—</div></div>
+    <div class="meta-item"><div class="meta-label">52w Low</div><div class="meta-val" id="h52l">—</div></div>
+    <div class="meta-item"><div class="meta-label">Volume</div><div class="meta-val" id="hVol">—</div></div>
+  </div>
+</div>
+
 <div class="tabs">
   <button class="tab active" onclick="switchTab('fundamental',this)">Fundamental</button>
   <button class="tab" onclick="switchTab('technical',this)">Technical</button>
@@ -192,123 +200,111 @@ textarea:focus{border-color:var(--blue)}
   <button class="tab" onclick="switchTab('verdict',this)">Verdict</button>
 </div>
 
-<!-- ── FUNDAMENTAL ── -->
 <div class="section active" id="fundamental">
-  <div class="sec-head"><h2>Fundamental analysis</h2><p>กรอกข้อมูลจาก Yahoo Finance / Macrotrends</p></div>
-  <div class="g2">
-    <div class="card">
-      <div class="card-title">Valuation</div>
-      <div class="field-row"><span class="field-key">P/E Ratio</span><input class="field-inp" id="pe" type="number" placeholder="—" oninput="updateScore()"></div>
-      <div class="field-row"><span class="field-key">Forward P/E</span><input class="field-inp" id="fpe" type="number" placeholder="—"></div>
-      <div class="field-row"><span class="field-key">PEG Ratio</span><input class="field-inp" id="peg" type="number" placeholder="—" oninput="updateScore()"></div>
-      <div class="field-row"><span class="field-key">P/S Ratio</span><input class="field-inp" id="ps" type="number" placeholder="—"></div>
-      <div class="field-row"><span class="field-key">EV/EBITDA</span><input class="field-inp" id="evebitda" type="number" placeholder="—"></div>
-      <div class="sigs"><span class="sig neut" id="valSig">Valuation: —</span></div>
-    </div>
-    <div class="card">
-      <div class="card-title">Growth</div>
-      <div class="field-row"><span class="field-key">Revenue Growth YoY %</span><input class="field-inp" id="revg" type="number" placeholder="—" oninput="updateScore()"></div>
-      <div class="field-row"><span class="field-key">EPS Growth YoY %</span><input class="field-inp" id="epsg" type="number" placeholder="—"></div>
-      <div class="field-row"><span class="field-key">Gross Margin %</span><input class="field-inp" id="gm" type="number" placeholder="—" oninput="updateScore()"></div>
-      <div class="field-row"><span class="field-key">Operating Margin %</span><input class="field-inp" id="om" type="number" placeholder="—"></div>
-      <div class="field-row"><span class="field-key">Net Margin %</span><input class="field-inp" id="nm" type="number" placeholder="—"></div>
-      <div class="sigs"><span class="sig neut" id="growSig">Growth: —</span></div>
-    </div>
+  <div id="fundEmpty" class="empty-state">
+    <div class="empty-icon">📊</div>
+    <div class="empty-title">พิมพ์ชื่อหุ้นแล้วกด "ดึงข้อมูล"</div>
+    <div class="empty-sub">ระบบจะดึงข้อมูลทั้งหมดให้อัตโนมัติ<br>รองรับหุ้นสหรัฐฯ ทุกตัว เช่น AAPL, NVDA, META</div>
   </div>
-  <div class="g2">
-    <div class="card">
-      <div class="card-title">Financial Health</div>
-      <div class="field-row"><span class="field-key">Debt / Equity</span><input class="field-inp" id="de" type="number" placeholder="—" oninput="updateScore()"></div>
-      <div class="field-row"><span class="field-key">Current Ratio</span><input class="field-inp" id="cr" type="number" placeholder="—"></div>
-      <div class="field-row"><span class="field-key">Free Cash Flow ($B)</span><input class="field-inp" id="fcf" type="number" placeholder="—" oninput="updateScore()"></div>
-      <div class="field-row"><span class="field-key">ROE %</span><input class="field-inp" id="roe" type="number" placeholder="—" oninput="updateScore()"></div>
-      <div class="field-row"><span class="field-key">ROIC %</span><input class="field-inp" id="roic" type="number" placeholder="—"></div>
-      <div class="sigs"><span class="sig neut" id="healthSig">Health: —</span></div>
+  <div id="fundData" style="display:none">
+    <div class="g2">
+      <div class="card">
+        <div class="card-title">Valuation</div>
+        <div class="field-row"><span class="field-key">P/E Ratio</span><span class="field-val" id="f-pe">—</span></div>
+        <div class="field-row"><span class="field-key">Forward P/E</span><span class="field-val" id="f-fpe">—</span></div>
+        <div class="field-row"><span class="field-key">PEG Ratio</span><span class="field-val" id="f-peg">—</span></div>
+        <div class="field-row"><span class="field-key">P/S Ratio</span><span class="field-val" id="f-ps">—</span></div>
+        <div class="field-row"><span class="field-key">EV/EBITDA</span><span class="field-val" id="f-ev">—</span></div>
+        <div class="sigs"><span class="sig neut" id="valSig">Valuation: —</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Growth & Margins</div>
+        <div class="field-row"><span class="field-key">Revenue Growth YoY</span><span class="field-val" id="f-revg">—</span></div>
+        <div class="field-row"><span class="field-key">EPS Growth YoY</span><span class="field-val" id="f-epsg">—</span></div>
+        <div class="field-row"><span class="field-key">Gross Margin</span><span class="field-val" id="f-gm">—</span></div>
+        <div class="field-row"><span class="field-key">Operating Margin</span><span class="field-val" id="f-om">—</span></div>
+        <div class="field-row"><span class="field-key">Net Margin</span><span class="field-val" id="f-nm">—</span></div>
+        <div class="sigs"><span class="sig neut" id="growSig">Growth: —</span></div>
+      </div>
     </div>
-    <div class="card">
-      <div class="card-title">ราคา & Market Cap</div>
-      <div class="field-row"><span class="field-key">ราคาปัจจุบัน ($)</span><input class="field-inp" id="price" type="number" placeholder="—" oninput="calcRR()"></div>
-      <div class="field-row"><span class="field-key">52w High ($)</span><input class="field-inp" id="w52h" type="number" placeholder="—"></div>
-      <div class="field-row"><span class="field-key">52w Low ($)</span><input class="field-inp" id="w52l" type="number" placeholder="—"></div>
-      <div class="field-row"><span class="field-key">Market Cap ($B)</span><input class="field-inp" id="mcap" type="number" placeholder="—"></div>
-      <div class="field-row"><span class="field-key">Dividend Yield %</span><input class="field-inp" id="div" type="number" placeholder="—"></div>
+    <div class="g2">
+      <div class="card">
+        <div class="card-title">Financial Health</div>
+        <div class="field-row"><span class="field-key">Debt / Equity</span><span class="field-val" id="f-de">—</span></div>
+        <div class="field-row"><span class="field-key">Current Ratio</span><span class="field-val" id="f-cr">—</span></div>
+        <div class="field-row"><span class="field-key">Free Cash Flow</span><span class="field-val" id="f-fcf">—</span></div>
+        <div class="field-row"><span class="field-key">ROE</span><span class="field-val" id="f-roe">—</span></div>
+        <div class="field-row"><span class="field-key">ROIC</span><span class="field-val" id="f-roic">—</span></div>
+        <div class="sigs"><span class="sig neut" id="healthSig">Health: —</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">ข้อมูลเพิ่มเติม</div>
+        <div class="field-row"><span class="field-key">Dividend Yield</span><span class="field-val" id="f-div">—</span></div>
+        <div class="field-row"><span class="field-key">Payout Ratio</span><span class="field-val" id="f-payout">—</span></div>
+        <div class="field-row"><span class="field-key">Shares Outstanding</span><span class="field-val" id="f-shares">—</span></div>
+        <div class="field-row"><span class="field-key">Beta</span><span class="field-val" id="f-beta">—</span></div>
+        <div class="field-row"><span class="field-key">Sector</span><span class="field-val" id="f-sector" style="font-family:var(--sans);font-size:12px">—</span></div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ── TECHNICAL ── -->
 <div class="section" id="technical">
-  <div class="sec-head"><h2>Technical analysis</h2><p>ข้อมูลจากกราฟ TradingView / Yahoo Finance</p></div>
-  <div class="g2">
-    <div class="card">
-      <div class="card-title">Momentum</div>
-      <div class="field-row"><span class="field-key">RSI (14)</span><input class="field-inp" id="rsi" type="number" placeholder="—" oninput="updateRSI();updateScore()"></div>
-      <div class="meter">
-        <div class="meter-labels"><span>Oversold 30</span><span>Overbought 70</span></div>
-        <div class="meter-track"><div class="meter-fill" id="rsiFill" style="width:50%;background:#94a3b8"></div></div>
-      </div>
-      <div class="field-row"><span class="field-key">MACD Line</span><input class="field-inp" id="macd" type="number" placeholder="—"></div>
-      <div class="field-row"><span class="field-key">MACD Signal</span><input class="field-inp" id="macdSig" type="number" placeholder="—"></div>
-      <div class="field-row"><span class="field-key">Stochastic %K</span><input class="field-inp" id="stoch" type="number" placeholder="—"></div>
-    </div>
-    <div class="card">
-      <div class="card-title">Moving Averages</div>
-      <div class="field-row"><span class="field-key">SMA 20</span><input class="field-inp" id="sma20" type="number" placeholder="—"></div>
-      <div class="field-row"><span class="field-key">SMA 50</span><input class="field-inp" id="sma50" type="number" placeholder="—" oninput="updateMA()"></div>
-      <div class="field-row"><span class="field-key">SMA 200</span><input class="field-inp" id="sma200" type="number" placeholder="—" oninput="updateMA()"></div>
-      <div class="field-row"><span class="field-key">EMA 20</span><input class="field-inp" id="ema20" type="number" placeholder="—"></div>
-      <div class="sigs"><span class="sig neut" id="maSig">MA: —</span></div>
-    </div>
+  <div id="techEmpty" class="empty-state">
+    <div class="empty-icon">📈</div>
+    <div class="empty-title">ยังไม่มีข้อมูล Technical</div>
+    <div class="empty-sub">พิมพ์ชื่อหุ้นแล้วกด "ดึงข้อมูล" ก่อนครับ</div>
   </div>
-  <div class="g3">
-    <div class="card">
-      <div class="card-title">Support & Resistance</div>
-      <div class="field-row"><span class="field-key">Resistance 1</span><input class="field-inp" id="r1" type="number" placeholder="—"></div>
-      <div class="field-row"><span class="field-key">Resistance 2</span><input class="field-inp" id="r2" type="number" placeholder="—"></div>
-      <div class="field-row"><span class="field-key">Support 1</span><input class="field-inp" id="s1" type="number" placeholder="—"></div>
-      <div class="field-row"><span class="field-key">Support 2</span><input class="field-inp" id="s2" type="number" placeholder="—"></div>
+  <div id="techData" style="display:none">
+    <div class="g2">
+      <div class="card">
+        <div class="card-title">Momentum</div>
+        <div class="field-row"><span class="field-key">RSI (14)</span><span class="field-val" id="t-rsi">—</span></div>
+        <div class="meter">
+          <div class="meter-labels"><span>Oversold 30</span><span>Overbought 70</span></div>
+          <div class="meter-track"><div class="meter-fill" id="rsiFill" style="width:50%;background:#94a3b8"></div></div>
+        </div>
+        <div class="field-row"><span class="field-key">MACD</span><span class="field-val" id="t-macd">—</span></div>
+        <div class="field-row"><span class="field-key">MACD Signal</span><span class="field-val" id="t-macdsig">—</span></div>
+        <div class="sigs" id="momSigs"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Moving Averages</div>
+        <div class="field-row"><span class="field-key">SMA 20</span><span class="field-val" id="t-sma20">—</span></div>
+        <div class="field-row"><span class="field-key">SMA 50</span><span class="field-val" id="t-sma50">—</span></div>
+        <div class="field-row"><span class="field-key">SMA 200</span><span class="field-val" id="t-sma200">—</span></div>
+        <div class="field-row"><span class="field-key">EMA 20</span><span class="field-val" id="t-ema20">—</span></div>
+        <div class="sigs"><span class="sig neut" id="maSig">MA: —</span></div>
+      </div>
     </div>
-    <div class="card">
-      <div class="card-title">Volatility</div>
-      <div class="field-row"><span class="field-key">Beta</span><input class="field-inp" id="beta" type="number" placeholder="—"></div>
-      <div class="field-row"><span class="field-key">ATR (14)</span><input class="field-inp" id="atr" type="number" placeholder="—"></div>
-      <div class="field-row"><span class="field-key">Bollinger Upper</span><input class="field-inp" id="bbu" type="number" placeholder="—"></div>
-      <div class="field-row"><span class="field-key">Bollinger Lower</span><input class="field-inp" id="bbl" type="number" placeholder="—"></div>
-    </div>
-    <div class="card">
-      <div class="card-title">Trend</div>
-      <div class="field-row"><span class="field-key">Daily Trend</span>
-        <select class="field-inp" id="trendD" oninput="updateScore()">
-          <option value="">—</option><option value="up">Uptrend</option><option value="side">Sideways</option><option value="down">Downtrend</option>
-        </select>
+    <div class="g2">
+      <div class="card">
+        <div class="card-title">Bollinger Bands & ATR</div>
+        <div class="field-row"><span class="field-key">BB Upper</span><span class="field-val" id="t-bbu">—</span></div>
+        <div class="field-row"><span class="field-key">BB Middle</span><span class="field-val" id="t-bbm">—</span></div>
+        <div class="field-row"><span class="field-key">BB Lower</span><span class="field-val" id="t-bbl">—</span></div>
+        <div class="field-row"><span class="field-key">ATR (14)</span><span class="field-val" id="t-atr">—</span></div>
       </div>
-      <div class="field-row"><span class="field-key">Weekly Trend</span>
-        <select class="field-inp" id="trendW">
-          <option value="">—</option><option value="up">Uptrend</option><option value="side">Sideways</option><option value="down">Downtrend</option>
-        </select>
+      <div class="card">
+        <div class="card-title">Price Levels</div>
+        <div class="field-row"><span class="field-key">52w High</span><span class="field-val" id="t-52h">—</span></div>
+        <div class="field-row"><span class="field-key">52w Low</span><span class="field-val" id="t-52l">—</span></div>
+        <div class="field-row"><span class="field-key">vs 52w High</span><span class="field-val" id="t-vs52h">—</span></div>
+        <div class="field-row"><span class="field-key">vs SMA 200</span><span class="field-val" id="t-vssma">—</span></div>
       </div>
-      <div class="field-row"><span class="field-key">Volume vs Avg</span>
-        <select class="field-inp" id="vol">
-          <option value="">—</option><option value="high">สูงกว่า avg</option><option value="avg">เท่ากับ avg</option><option value="low">ต่ำกว่า avg</option>
-        </select>
-      </div>
-      <div class="field-row"><span class="field-key">Pattern</span><input class="field-inp" id="pattern" type="text" placeholder="Cup & Handle…"></div>
     </div>
   </div>
 </div>
 
-<!-- ── QUALITATIVE ── -->
 <div class="section" id="qualitative">
-  <div class="sec-head"><h2>Qualitative analysis</h2><p>ประเมินคุณภาพธุรกิจและ story</p></div>
+  <div class="sec-head"><h2>Qualitative analysis</h2><p>ประเมินคุณภาพธุรกิจ — กรอกเองครับ</p></div>
   <div class="g2">
     <div class="card">
       <div class="card-title">Economic Moat</div>
       <div class="field-row"><span class="field-key">ระดับ Moat (1–5)</span></div>
       <div class="stars" id="moatStars">
-        <span class="star" onclick="setMoat(1)">★</span>
-        <span class="star" onclick="setMoat(2)">★</span>
-        <span class="star" onclick="setMoat(3)">★</span>
-        <span class="star" onclick="setMoat(4)">★</span>
+        <span class="star" onclick="setMoat(1)">★</span><span class="star" onclick="setMoat(2)">★</span>
+        <span class="star" onclick="setMoat(3)">★</span><span class="star" onclick="setMoat(4)">★</span>
         <span class="star" onclick="setMoat(5)">★</span>
       </div>
       <div style="font-size:12px;color:var(--ink3);margin-top:12px;margin-bottom:4px">ประเภท Moat</div>
@@ -322,64 +318,40 @@ textarea:focus{border-color:var(--blue)}
       </div>
     </div>
     <div class="card">
-      <div class="card-title">Management</div>
+      <div class="card-title">Management & Risk</div>
       <div class="field-row"><span class="field-key">CEO Track Record</span></div>
       <div class="dots" id="ceoDots">
-        <span class="dot-r" onclick="setDots('ceoDots',1)">1</span>
-        <span class="dot-r" onclick="setDots('ceoDots',2)">2</span>
-        <span class="dot-r" onclick="setDots('ceoDots',3)">3</span>
-        <span class="dot-r" onclick="setDots('ceoDots',4)">4</span>
+        <span class="dot-r" onclick="setDots('ceoDots',1)">1</span><span class="dot-r" onclick="setDots('ceoDots',2)">2</span>
+        <span class="dot-r" onclick="setDots('ceoDots',3)">3</span><span class="dot-r" onclick="setDots('ceoDots',4)">4</span>
         <span class="dot-r" onclick="setDots('ceoDots',5)">5</span>
       </div>
-      <div class="field-row" style="margin-top:12px"><span class="field-key">Insider Buying</span>
-        <select class="field-inp" id="insider">
-          <option value="">—</option><option value="heavy">ซื้อหนัก</option><option value="light">ซื้อเล็กน้อย</option><option value="none">ไม่มี</option><option value="sell">ขาย</option>
-        </select>
-      </div>
-      <div class="field-row"><span class="field-key">Analyst Rating</span>
-        <select class="field-inp" id="analyst">
-          <option value="">—</option><option value="sb">Strong Buy</option><option value="buy">Buy</option><option value="hold">Hold</option><option value="sell">Sell</option>
-        </select>
-      </div>
-    </div>
-  </div>
-  <div class="g2">
-    <div class="card">
-      <div class="card-title">Catalyst</div>
-      <div class="tags">
-        <span class="tag" onclick="toggleTag(this)">Earnings beat</span>
-        <span class="tag" onclick="toggleTag(this)">Product Launch</span>
-        <span class="tag" onclick="toggleTag(this)">AI Expansion</span>
-        <span class="tag" onclick="toggleTag(this)">Share Buyback</span>
-        <span class="tag" onclick="toggleTag(this)">M&A</span>
-        <span class="tag" onclick="toggleTag(this)">Rate Cut</span>
-        <span class="tag" onclick="toggleTag(this)">Index Addition</span>
-        <span class="tag" onclick="toggleTag(this)">Guidance Raise</span>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-title">Risk Factors</div>
+      <div style="font-size:12px;color:var(--ink3);margin-top:12px;margin-bottom:4px">Risk Factors</div>
       <div class="tags">
         <span class="tag" onclick="toggleTag(this)">Valuation สูง</span>
         <span class="tag" onclick="toggleTag(this)">Competition</span>
         <span class="tag" onclick="toggleTag(this)">Regulation</span>
-        <span class="tag" onclick="toggleTag(this)">Macro/Recession</span>
+        <span class="tag" onclick="toggleTag(this)">Macro</span>
         <span class="tag" onclick="toggleTag(this)">Debt สูง</span>
-        <span class="tag" onclick="toggleTag(this)">Insider ขาย</span>
         <span class="tag" onclick="toggleTag(this)">Growth ชะลอ</span>
-        <span class="tag" onclick="toggleTag(this)">Geopolitical</span>
       </div>
     </div>
   </div>
   <div class="card">
-    <div class="card-title">Investment Thesis</div>
-    <textarea id="thesis" placeholder="ทำไมถึงสนใจหุ้นตัวนี้? จุดเด่นคืออะไร? ทำไมตลาดยังไม่ได้ราคา?"></textarea>
+    <div class="card-title">Catalyst & Thesis</div>
+    <div class="tags" style="margin-top:0;margin-bottom:10px">
+      <span class="tag" onclick="toggleTag(this)">Earnings beat</span>
+      <span class="tag" onclick="toggleTag(this)">AI Expansion</span>
+      <span class="tag" onclick="toggleTag(this)">Share Buyback</span>
+      <span class="tag" onclick="toggleTag(this)">M&A</span>
+      <span class="tag" onclick="toggleTag(this)">Rate Cut</span>
+      <span class="tag" onclick="toggleTag(this)">Guidance Raise</span>
+    </div>
+    <textarea id="thesis" placeholder="ทำไมถึงสนใจหุ้นตัวนี้? จุดเด่นคืออะไร?"></textarea>
   </div>
 </div>
 
-<!-- ── VERDICT ── -->
 <div class="section" id="verdict">
-  <div class="sec-head"><h2>Verdict & Summary</h2><p>สรุปผลการวิเคราะห์</p></div>
+  <div class="sec-head"><h2>Verdict & Summary</h2></div>
   <div class="sum-grid">
     <div class="sum-card"><div class="sum-num" id="vFund">—</div><div class="sum-sub">Fundamental /40</div></div>
     <div class="sum-card"><div class="sum-num" id="vTech">—</div><div class="sum-sub">Technical /30</div></div>
@@ -387,7 +359,8 @@ textarea:focus{border-color:var(--blue)}
   </div>
   <div class="g2">
     <div class="card">
-      <div class="card-title">Price Target & Position</div>
+      <div class="card-title">Price Target</div>
+      <div class="field-row"><span class="field-key">ราคาปัจจุบัน ($)</span><span class="field-val" id="v-price">—</span></div>
       <div class="field-row"><span class="field-key">Price Target ($)</span><input class="field-inp" id="pt" type="number" placeholder="—" oninput="calcRR()"></div>
       <div class="field-row"><span class="field-key">Stop Loss ($)</span><input class="field-inp" id="sl" type="number" placeholder="—" oninput="calcRR()"></div>
       <div class="field-row"><span class="field-key">Timeframe</span>
@@ -395,7 +368,6 @@ textarea:focus{border-color:var(--blue)}
           <option>Short (1–3 เดือน)</option><option>Mid (3–12 เดือน)</option><option>Long (1+ ปี)</option>
         </select>
       </div>
-      <div class="field-row"><span class="field-key">Position Size %</span><input class="field-inp" id="posSize" type="number" placeholder="5"></div>
       <div class="rr-display" id="rrDisplay"></div>
     </div>
     <div class="card">
@@ -405,174 +377,263 @@ textarea:focus{border-color:var(--blue)}
         <button class="vbtn" id="vHold" onclick="setVerdict('hold')">⏸ HOLD</button>
         <button class="vbtn" id="vSell" onclick="setVerdict('sell')">🚫 SELL</button>
       </div>
-      <textarea id="verdictNote" placeholder="สรุปเหตุผล verdict ในไม่กี่บรรทัด..."></textarea>
+      <textarea id="verdictNote" placeholder="สรุปเหตุผล verdict..."></textarea>
     </div>
   </div>
   <div class="btn-row">
     <button class="btn btn-primary" onclick="copyReport()">📋 Copy Report</button>
-    <button class="btn" onclick="clearAll()">🗑 Clear ทั้งหมด</button>
+    <button class="btn" onclick="clearAll()">🗑 Clear</button>
   </div>
 </div>
-
 </main>
 </div>
-
 <div id="toast"></div>
 
 <script>
+const API_KEY = '8IdwNiRth6cCgcsK3yLUwJlgVuJEyJNU';
+const BASE = 'https://financialmodelingprep.com/api/v3';
 const PW = 'stock2025';
-let moatScore = 0, verdictVal = '';
+let moatScore=0, verdictVal='', currentPrice=0;
+let fundScore=0, techScore=0, qualScore=0;
 
 function checkPw(){
-  const v = document.getElementById('pwInput').value.trim();
-  if(v === PW){
+  if(document.getElementById('pwInput').value.trim()===PW){
     document.getElementById('gate').style.display='none';
     document.getElementById('app').style.display='block';
   } else {
     document.getElementById('gateErr').style.display='block';
-    document.getElementById('pwInput').focus();
   }
 }
-
 function switchTab(id,btn){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   btn.classList.add('active');
 }
+function setProgress(p){document.getElementById('loadBar').style.width=p+'%'}
+async function api(path){
+  const sep=path.includes('?')?'&':'?';
+  const r=await fetch(BASE+path+sep+'apikey='+API_KEY);
+  if(!r.ok) throw new Error('API '+r.status);
+  return r.json();
+}
+function fmt(n,d=2,s=''){
+  if(n===null||n===undefined||isNaN(n)||n==='')return '—';
+  return (+n).toFixed(d)+s;
+}
+function fmtB(n){
+  if(!n)return '—';
+  const a=Math.abs(n);
+  if(a>=1e12)return (n/1e12).toFixed(2)+'T';
+  if(a>=1e9)return (n/1e9).toFixed(2)+'B';
+  if(a>=1e6)return (n/1e6).toFixed(2)+'M';
+  return (+n).toFixed(0);
+}
+function setVal(id,val,cls=''){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.textContent=val;
+  el.className='field-val'+(cls?' '+cls:'');
+}
+function cp(n){return n>0?'pos':n<0?'neg':'neutral'}
 
-function g(id){return parseFloat(document.getElementById(id).value)||null}
-
-function updateRSI(){
-  const rsi = g('rsi');
-  if(!rsi) return;
-  const pct = Math.min(100, Math.max(0, rsi));
-  const fill = document.getElementById('rsiFill');
-  fill.style.width = pct + '%';
-  fill.style.background = rsi < 30 ? '#ef4444' : rsi > 70 ? '#22c55e' : '#3b74e0';
+async function fetchAll(){
+  const ticker=document.getElementById('tickerInput').value.trim().toUpperCase();
+  if(!ticker){toast('ใส่ชื่อหุ้นก่อนครับ');return}
+  const btn=document.getElementById('fetchBtn');
+  btn.disabled=true; btn.textContent='กำลังดึง...'; setProgress(10);
+  try{
+    const [quote,profile,ratios,income,rsiD,macdD,s20D,s50D,s200D,e20D,atrD,bbD]=await Promise.all([
+      api(`/quote/${ticker}`),
+      api(`/profile/${ticker}`),
+      api(`/ratios-ttm/${ticker}`),
+      api(`/income-statement/${ticker}?limit=2`),
+      api(`/technical_indicator/daily/${ticker}?type=rsi&period=14&limit=1`),
+      api(`/technical_indicator/daily/${ticker}?type=macd&period=12&limit=1`),
+      api(`/technical_indicator/daily/${ticker}?type=sma&period=20&limit=1`),
+      api(`/technical_indicator/daily/${ticker}?type=sma&period=50&limit=1`),
+      api(`/technical_indicator/daily/${ticker}?type=sma&period=200&limit=1`),
+      api(`/technical_indicator/daily/${ticker}?type=ema&period=20&limit=1`),
+      api(`/technical_indicator/daily/${ticker}?type=atr&period=14&limit=1`),
+      api(`/technical_indicator/daily/${ticker}?type=standardDeviation&period=20&limit=1`),
+    ]);
+    setProgress(85);
+    if(!quote||!quote[0]){toast('ไม่พบหุ้น "'+ticker+'" ลองใหม่นะครับ');setProgress(0);return}
+    const q=quote[0],p=profile[0],r=ratios[0],inc=income;
+    renderHeader(q,p);
+    renderFund(q,p,r,inc);
+    renderTech(q,rsiD[0],macdD[0],s20D[0],s50D[0],s200D[0],e20D[0],atrD[0],bbD[0]);
+    updateScore();
+    setProgress(100);
+    toast('ดึงข้อมูล '+ticker+' สำเร็จ ✓');
+    setTimeout(()=>setProgress(0),800);
+  }catch(e){
+    toast('เกิดข้อผิดพลาด กรุณาลองใหม่');
+    setProgress(0);
+  }
+  btn.disabled=false; btn.textContent='ดึงข้อมูล →';
 }
 
-function updateMA(){
-  const s50 = g('sma50'), s200 = g('sma200'), sig = document.getElementById('maSig');
-  if(!s50||!s200){sig.className='sig neut';sig.textContent='MA: —';return}
-  if(s50>s200){sig.className='sig bull';sig.textContent='Golden Cross ↑'}
-  else{sig.className='sig bear';sig.textContent='Death Cross ↓'}
+function renderHeader(q,p){
+  currentPrice=q.price||0;
+  document.getElementById('hName').textContent=q.name||q.symbol;
+  document.getElementById('hSector').textContent=(p?.sector||'')+(p?.exchange?' · '+p.exchange:'');
+  document.getElementById('hPrice').textContent='$'+fmt(q.price,2);
+  const chg=q.changesPercentage||0;
+  const el=document.getElementById('hChange');
+  el.textContent=(chg>=0?'+':'')+fmt(chg,2)+'%';
+  el.className='stock-change '+(chg>=0?'up':'dn');
+  document.getElementById('hMcap').textContent=fmtB(q.marketCap);
+  document.getElementById('h52h').textContent='$'+fmt(q.yearHigh,2);
+  document.getElementById('h52l').textContent='$'+fmt(q.yearLow,2);
+  document.getElementById('hVol').textContent=fmtB(q.volume);
+  document.getElementById('stockHeader').className='stock-header show';
+  document.getElementById('v-price').textContent='$'+fmt(q.price,2);
 }
 
-function setMoat(n){
-  moatScore = n;
-  document.querySelectorAll('#moatStars .star').forEach((s,i)=>s.classList.toggle('on',i<n));
-  updateScore();
+function renderFund(q,p,r,inc){
+  document.getElementById('fundEmpty').style.display='none';
+  document.getElementById('fundData').style.display='block';
+  const pe=r?.peRatioTTM;
+  setVal('f-pe',fmt(pe,1),pe?pe<20?'pos':pe>40?'neg':'':'');
+  setVal('f-fpe',fmt(r?.priceEarningsRatioTTM,1));
+  const peg=r?.pegRatioTTM;
+  setVal('f-peg',fmt(peg,2),peg?peg<1?'pos':peg>2?'neg':'':'');
+  setVal('f-ps',fmt(r?.priceToSalesRatioTTM,1));
+  setVal('f-ev',fmt(r?.enterpriseValueMultipleTTM,1));
+  const revg=inc&&inc[0]&&inc[1]&&inc[1].revenue?(inc[0].revenue-inc[1].revenue)/Math.abs(inc[1].revenue)*100:null;
+  setVal('f-revg',revg!==null?fmt(revg,1)+'%':'—',revg!==null?cp(revg):'');
+  const epsg=inc&&inc[0]&&inc[1]&&inc[1].eps?(inc[0].eps-inc[1].eps)/Math.abs(inc[1].eps)*100:null;
+  setVal('f-epsg',epsg!==null?fmt(epsg,1)+'%':'—',epsg!==null?cp(epsg):'');
+  const gm=(r?.grossProfitMarginTTM||0)*100;
+  setVal('f-gm',fmt(gm,1)+'%',gm>50?'pos':gm<20?'neg':'');
+  const om=(r?.operatingProfitMarginTTM||0)*100;
+  setVal('f-om',fmt(om,1)+'%',cp(om));
+  const nm=(r?.netProfitMarginTTM||0)*100;
+  setVal('f-nm',fmt(nm,1)+'%',cp(nm));
+  const de=r?.debtEquityRatioTTM;
+  setVal('f-de',fmt(de,2),de?de<1?'pos':de>2?'neg':'':'');
+  setVal('f-cr',fmt(r?.currentRatioTTM,2));
+  setVal('f-fcf',fmtB(r?.freeCashFlowPerShareTTM));
+  const roe=(r?.returnOnEquityTTM||0)*100;
+  setVal('f-roe',fmt(roe,1)+'%',roe>15?'pos':roe<5?'neg':'');
+  setVal('f-roic',fmt((r?.returnOnCapitalEmployedTTM||0)*100,1)+'%');
+  setVal('f-div',fmt((r?.dividendYielTTM||0)*100,2)+'%');
+  setVal('f-payout',fmt((r?.payoutRatioTTM||0)*100,1)+'%');
+  setVal('f-shares',fmtB(q.sharesOutstanding));
+  setVal('f-beta',fmt(p?.beta,2));
+  const secEl=document.getElementById('f-sector');
+  if(secEl){secEl.textContent=p?.sector||'—';secEl.className='field-val neutral'}
+
+  fundScore=0;
+  if(pe){if(pe<15)fundScore+=10;else if(pe<25)fundScore+=7;else if(pe<40)fundScore+=4;else fundScore+=1}
+  if(peg){if(peg<1)fundScore+=5;else if(peg<2)fundScore+=3;else fundScore+=1}
+  if(revg!=null){if(revg>20)fundScore+=10;else if(revg>10)fundScore+=7;else if(revg>0)fundScore+=4}
+  if(gm){if(gm>50)fundScore+=8;else if(gm>30)fundScore+=5;else fundScore+=2}
+  if(de){if(de<0.5)fundScore+=7;else if(de<1.5)fundScore+=4;else fundScore+=1}
+  if(nm>0)fundScore+=5;
+  if(roe>20)fundScore+=5;else if(roe>10)fundScore+=3;
+  fundScore=Math.min(40,fundScore);
+
+  const vs=document.getElementById('valSig');
+  if(pe){if(pe<20){vs.className='sig bull';vs.textContent='Valuation: cheap'}else if(pe<35){vs.className='sig neut';vs.textContent='Valuation: fair'}else{vs.className='sig bear';vs.textContent='Valuation: pricey'}}
+  const gs=document.getElementById('growSig');
+  if(revg!=null){if(revg>15){gs.className='sig bull';gs.textContent='Growth: strong'}else if(revg>0){gs.className='sig neut';gs.textContent='Growth: moderate'}else{gs.className='sig bear';gs.textContent='Growth: slowing'}}
+  const hs=document.getElementById('healthSig');
+  if(de){if(de<1){hs.className='sig bull';hs.textContent='Health: strong'}else if(de<2){hs.className='sig neut';hs.textContent='Health: ok'}else{hs.className='sig bear';hs.textContent='Health: leveraged'}}
 }
 
-function toggleTag(el){el.classList.toggle('on')}
+function renderTech(q,rsi,macd,s20,s50,s200,e20,atr,bb){
+  document.getElementById('techEmpty').style.display='none';
+  document.getElementById('techData').style.display='block';
+  const rv=rsi?.rsi;
+  setVal('t-rsi',fmt(rv,1),rv?rv<30?'pos':rv>70?'neg':'':'');
+  if(rv){const f=document.getElementById('rsiFill');f.style.width=Math.min(100,rv)+'%';f.style.background=rv<30?'#c5221f':rv>70?'#14803c':'#1a56db'}
+  const ml=macd?.macd,ms=macd?.signal;
+  setVal('t-macd',fmt(ml,3),ml?cp(ml):'');
+  setVal('t-macdsig',fmt(ms,3));
+  setVal('t-sma20',fmt(s20?.sma,2));
+  setVal('t-sma50',fmt(s50?.sma,2));
+  setVal('t-sma200',fmt(s200?.sma,2));
+  setVal('t-ema20',fmt(e20?.ema,2));
+  const price=q.price;
+  const std=bb?.standardDeviation||0;
+  setVal('t-bbu',fmt(price+std*2,2));
+  setVal('t-bbm',fmt(price,2));
+  setVal('t-bbl',fmt(price-std*2,2));
+  setVal('t-atr',fmt(atr?.atr,2));
+  setVal('t-52h','$'+fmt(q.yearHigh,2));
+  setVal('t-52l','$'+fmt(q.yearLow,2));
+  const vs52=q.yearHigh?(price-q.yearHigh)/q.yearHigh*100:null;
+  setVal('t-vs52h',vs52!=null?fmt(vs52,1)+'%':'—',vs52!=null?cp(vs52):'');
+  const vsSma=s200?.sma?(price-s200.sma)/s200.sma*100:null;
+  setVal('t-vssma',vsSma!=null?fmt(vsSma,1)+'%':'—',vsSma!=null?cp(vsSma):'');
 
-function setDots(id,n){
-  document.querySelectorAll('#'+id+' .dot-r').forEach((d,i)=>d.classList.toggle('on',i<n));
-}
+  techScore=0;
+  if(rv){if(rv>30&&rv<70)techScore+=15;else techScore+=5}
+  if(s50?.sma&&s200?.sma){
+    const ma=document.getElementById('maSig');
+    if(s50.sma>s200.sma){ma.className='sig bull';ma.textContent='Golden Cross ↑';techScore+=15}
+    else{ma.className='sig bear';ma.textContent='Death Cross ↓';techScore+=3}
+  }
+  if(ml&&ms&&ml>ms)techScore+=5;
+  techScore=Math.min(30,techScore);
 
-function setVerdict(v){
-  verdictVal = v;
-  ['buy','hold','sell'].forEach(x=>{
-    document.getElementById('v'+x.charAt(0).toUpperCase()+x.slice(1)).className='vbtn'+(v===x?' '+v:'');
-  });
-}
-
-function calcRR(){
-  const price=g('price'),pt=g('pt'),sl=g('sl'),el=document.getElementById('rrDisplay');
-  if(price&&pt&&sl&&(price-sl)>0){
-    const rr=((pt-price)/(price-sl)).toFixed(1);
-    el.textContent='R:R = 1 : '+rr;
-  } else {el.textContent=''}
+  const mo=document.getElementById('momSigs'); mo.innerHTML='';
+  if(rv){const b=document.createElement('span');b.className='sig '+(rv<30?'bull':rv>70?'bear':'neut');b.textContent='RSI: '+(rv<30?'Oversold':rv>70?'Overbought':'Neutral');mo.appendChild(b)}
+  if(ml&&ms){const b=document.createElement('span');b.className='sig '+(ml>ms?'bull':'bear');b.textContent='MACD: '+(ml>ms?'Bullish':'Bearish');mo.appendChild(b)}
 }
 
 function updateScore(){
-  let fund=0,tech=0,qual=0;
-  const pe=g('pe'),peg=g('peg'),revg=g('revg'),gm=g('gm'),de=g('de'),fcf=g('fcf'),roe=g('roe'),rsi=g('rsi');
-  const trend=document.getElementById('trendD').value;
-
-  if(pe!==null){
-    if(pe<15)fund+=10;else if(pe<25)fund+=7;else if(pe<40)fund+=4;else fund+=1;
-    const vs=document.getElementById('valSig');
-    if(pe<20){vs.className='sig bull';vs.textContent='Valuation: cheap'}
-    else if(pe<35){vs.className='sig neut';vs.textContent='Valuation: fair'}
-    else{vs.className='sig bear';vs.textContent='Valuation: pricey'}
-  }
-  if(peg!==null){if(peg<1)fund+=5;else if(peg<2)fund+=3;else fund+=1}
-  if(revg!==null){
-    if(revg>20)fund+=10;else if(revg>10)fund+=7;else if(revg>0)fund+=4;
-    const gs=document.getElementById('growSig');
-    if(revg>15){gs.className='sig bull';gs.textContent='Growth: strong'}
-    else if(revg>0){gs.className='sig neut';gs.textContent='Growth: moderate'}
-    else{gs.className='sig bear';gs.textContent='Growth: slowing'}
-  }
-  if(gm!==null){if(gm>50)fund+=8;else if(gm>30)fund+=5;else fund+=2}
-  if(de!==null){
-    if(de<0.5)fund+=7;else if(de<1.5)fund+=4;else fund+=1;
-    const hs=document.getElementById('healthSig');
-    if(de<1){hs.className='sig bull';hs.textContent='Health: strong'}
-    else if(de<2){hs.className='sig neut';hs.textContent='Health: ok'}
-    else{hs.className='sig bear';hs.textContent='Health: leveraged'}
-  }
-  if(fcf!==null&&fcf>0)fund+=5;
-  if(roe!==null){if(roe>20)fund+=5;else if(roe>10)fund+=3;else fund+=1}
-  fund=Math.min(40,fund);
-
-  if(rsi!==null){if(rsi>30&&rsi<70)tech+=15;else tech+=5}
-  if(trend==='up')tech+=15;else if(trend==='side')tech+=8;
-  tech=Math.min(30,tech);
-
-  qual=Math.min(30, moatScore*5 + 3);
-
-  const total=fund+tech+qual;
-  document.getElementById('vFund').textContent=fund||'—';
-  document.getElementById('vTech').textContent=tech||'—';
-  document.getElementById('vQual').textContent=qual||'—';
-
+  qualScore=Math.min(30,moatScore*5+3);
+  const total=fundScore+techScore+qualScore;
+  document.getElementById('vFund').textContent=fundScore||'—';
+  document.getElementById('vTech').textContent=techScore||'—';
+  document.getElementById('vQual').textContent=qualScore||'—';
   const ring=document.getElementById('scoreRing');
-  if(fund>0||tech>0||qual>0){
+  if(fundScore>0||techScore>0){
     ring.textContent=total;
     ring.className='score-ring'+(total>=70?' high':total>=50?' mid':' low');
-  } else {ring.textContent='—';ring.className='score-ring'}
+  }
 }
-
+function calcRR(){
+  const p=currentPrice,pt=parseFloat(document.getElementById('pt').value),sl=parseFloat(document.getElementById('sl').value);
+  const el=document.getElementById('rrDisplay');
+  if(p&&pt&&sl&&(p-sl)>0)el.textContent='R:R = 1 : '+((pt-p)/(p-sl)).toFixed(1);
+  else el.textContent='';
+}
+function setMoat(n){moatScore=n;document.querySelectorAll('#moatStars .star').forEach((s,i)=>s.classList.toggle('on',i<n));updateScore()}
+function toggleTag(el){el.classList.toggle('on')}
+function setDots(id,n){document.querySelectorAll('#'+id+' .dot-r').forEach((d,i)=>d.classList.toggle('on',i<n))}
+function setVerdict(v){
+  verdictVal=v;
+  ['buy','hold','sell'].forEach(x=>{document.getElementById('v'+x.charAt(0).toUpperCase()+x.slice(1)).className='vbtn'+(v===x?' '+x:'')});
+}
 function copyReport(){
   const ticker=document.getElementById('tickerInput').value||'N/A';
   const score=document.getElementById('scoreRing').textContent;
-  const fund=document.getElementById('vFund').textContent;
-  const tech=document.getElementById('vTech').textContent;
-  const qual=document.getElementById('vQual').textContent;
   const thesis=document.getElementById('thesis').value||'—';
   const note=document.getElementById('verdictNote').value||'—';
   const pt=document.getElementById('pt').value||'—';
   const sl=document.getElementById('sl').value||'—';
   const rr=document.getElementById('rrDisplay').textContent||'—';
-  const v=verdictVal?verdictVal.toUpperCase():'—';
-
-  let r=`📊 STOCK ANALYSIS — $${ticker}\n`;
-  r+=`${'─'.repeat(30)}\n`;
-  r+=`คะแนนรวม : ${score}/100\n`;
-  r+=`Fundamental : ${fund}/40\n`;
-  r+=`Technical   : ${tech}/30\n`;
-  r+=`Qualitative : ${qual}/30\n\n`;
-  r+=`Investment Thesis:\n${thesis}\n\n`;
-  r+=`Price Target : $${pt}\n`;
-  r+=`Stop Loss    : $${sl}\n`;
-  r+=`${rr}\n\n`;
-  r+=`Verdict : ${v}\n${note}\n`;
-  r+=`${'─'.repeat(30)}\n`;
-  r+=`⚠️ เพื่อการศึกษาเท่านั้น ไม่ใช่คำแนะนำลงทุน`;
-
-  navigator.clipboard.writeText(r).then(()=>toast('Copied! นำไปแปะได้เลย 📋'));
+  let rep=`📊 STOCK ANALYSIS — $${ticker}\n${'─'.repeat(30)}\n`;
+  rep+=`คะแนนรวม : ${score}/100\n`;
+  rep+=`Fundamental : ${fundScore}/40 | Technical : ${techScore}/30 | Qualitative : ${qualScore}/30\n\n`;
+  rep+=`Price : $${currentPrice?currentPrice.toFixed(2):'—'}\nPrice Target : $${pt} | Stop Loss : $${sl}\n${rr}\n\n`;
+  rep+=`Investment Thesis:\n${thesis}\n\nVerdict : ${verdictVal?verdictVal.toUpperCase():'—'}\n${note}\n`;
+  rep+=`${'─'.repeat(30)}\n⚠️ เพื่อการศึกษาเท่านั้น ไม่ใช่คำแนะนำลงทุน`;
+  navigator.clipboard.writeText(rep).then(()=>toast('Copied! 📋'));
 }
-
 function clearAll(){
   if(!confirm('ล้างข้อมูลทั้งหมด?'))return;
-  document.querySelectorAll('input[type=number],input[type=text],textarea').forEach(el=>el.value='');
-  document.querySelectorAll('select').forEach(el=>el.selectedIndex=0);
-  document.querySelectorAll('.star').forEach(s=>s.classList.remove('on'));
-  document.querySelectorAll('.tag,.dot-r').forEach(t=>t.classList.remove('on'));
-  moatScore=0; verdictVal='';
+  document.getElementById('tickerInput').value='';
+  document.getElementById('stockHeader').className='stock-header';
+  ['fundEmpty','techEmpty'].forEach(id=>document.getElementById(id).style.display='block');
+  ['fundData','techData'].forEach(id=>document.getElementById(id).style.display='none');
+  document.querySelectorAll('.star,.tag,.dot-r').forEach(el=>el.classList.remove('on'));
+  document.querySelectorAll('textarea,input[type=number]').forEach(el=>el.value='');
+  moatScore=0;verdictVal='';fundScore=0;techScore=0;qualScore=0;currentPrice=0;
   ['vBuy','vHold','vSell'].forEach(id=>document.getElementById(id).className='vbtn');
   document.getElementById('scoreRing').textContent='—';
   document.getElementById('scoreRing').className='score-ring';
@@ -580,11 +641,9 @@ function clearAll(){
   ['vFund','vTech','vQual'].forEach(id=>document.getElementById(id).textContent='—');
   toast('ล้างข้อมูลแล้ว');
 }
-
 function toast(msg){
   const t=document.getElementById('toast');
-  t.textContent=msg;
-  t.classList.add('show');
+  t.textContent=msg;t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2500);
 }
 </script>
