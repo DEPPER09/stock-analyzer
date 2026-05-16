@@ -35,43 +35,41 @@ body{font-family:var(--sans);background:var(--surface2);color:var(--ink);min-hei
 
 nav{background:var(--ink);padding:0 1.5rem;display:flex;align-items:center;height:54px;gap:12px;position:sticky;top:0;z-index:100}
 .nav-logo{font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.4);letter-spacing:2px}
-.nav-search{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:0 12px;height:36px;flex:1;max-width:280px}
+.nav-search{display:flex;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:0 12px;height:36px;flex:1;max-width:280px}
 .nav-search input{background:none;border:none;outline:none;font-family:var(--mono);font-size:16px;font-weight:500;color:#fff;letter-spacing:3px;text-transform:uppercase;width:100%}
-.nav-search input::placeholder{color:rgba(255,255,255,.25);letter-spacing:1px;font-size:13px;font-weight:400}
-.fetch-btn{padding:7px 16px;background:var(--blue);color:#fff;border:none;border-radius:7px;font-size:13px;font-family:var(--sans);font-weight:500;cursor:pointer;transition:opacity .2s;white-space:nowrap}
+.nav-search input::placeholder{color:rgba(255,255,255,.25);letter-spacing:1px;font-size:13px;font-weight:400;font-family:var(--sans)}
+.fetch-btn{padding:7px 16px;background:var(--blue);color:#fff;border:none;border-radius:7px;font-size:13px;font-family:var(--sans);font-weight:500;cursor:pointer;white-space:nowrap;transition:opacity .2s}
 .fetch-btn:hover{opacity:.85}
 .fetch-btn:disabled{opacity:.4;cursor:not-allowed}
-.nav-right{margin-left:auto;display:flex;align-items:center;gap:10px}
 .score-label{font-size:10px;color:rgba(255,255,255,.35);letter-spacing:.5px;margin-bottom:2px;text-align:center}
-.score-ring{width:38px;height:38px;border-radius:50%;border:2px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;font-weight:500;color:#fff;transition:all .3s}
+.score-ring{width:38px;height:38px;border-radius:50%;border:2px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;font-weight:500;color:#fff;transition:all .3s;margin-left:auto}
 .score-ring.high{border-color:#4ade80;color:#4ade80}
 .score-ring.mid{border-color:#fbbf24;color:#fbbf24}
 .score-ring.low{border-color:#f87171;color:#f87171}
 
-.loading-bar{height:3px;background:var(--blue);width:0;transition:width .4s;position:fixed;top:54px;left:0;z-index:200}
+.loading-bar{height:3px;background:var(--blue);width:0;transition:width .5s;position:fixed;top:54px;left:0;z-index:200}
 
 main{max-width:960px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
 
 .stock-header{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem 1.5rem;margin-bottom:1.25rem;display:none}
 .stock-header.show{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
-.stock-name{font-size:20px;font-weight:500;color:var(--ink)}
-.stock-price{font-family:var(--mono);font-size:26px;font-weight:500;color:var(--ink)}
+.stock-name{font-size:20px;font-weight:500}
+.stock-price{font-family:var(--mono);font-size:26px;font-weight:500}
 .stock-change{font-size:13px;font-weight:500;padding:3px 10px;border-radius:20px}
 .up{background:var(--green-light);color:var(--green)}
 .dn{background:var(--red-light);color:var(--red)}
 .stock-meta{display:flex;gap:1.5rem;flex-wrap:wrap;margin-left:auto}
 .meta-item{text-align:right}
 .meta-label{font-size:11px;color:var(--ink3)}
-.meta-val{font-size:13px;font-weight:500;font-family:var(--mono);color:var(--ink)}
+.meta-val{font-size:13px;font-weight:500;font-family:var(--mono)}
 
-.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:1.5rem;overflow-x:auto}
+.tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:1.5rem;overflow-x:auto}
 .tab{padding:10px 20px;font-size:14px;color:var(--ink3);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all .2s;font-family:var(--sans)}
 .tab.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:500}
 
 .section{display:none}.section.active{display:block}
-
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1rem}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1rem}
 @media(max-width:600px){.g2,.g3{grid-template-columns:1fr}}
 
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem}
@@ -80,10 +78,10 @@ main{max-width:960px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
 .field-row{display:flex;align-items:center;padding:6px 0;border-bottom:1px solid var(--surface3)}
 .field-row:last-child{border:none}
 .field-key{font-size:13px;color:var(--ink3);flex:1}
-.field-val{font-size:13px;font-weight:500;font-family:var(--mono);color:var(--ink);text-align:right;min-width:80px}
-.field-val.pos{color:var(--green)}.field-val.neg{color:var(--red)}.field-val.neutral{color:var(--ink3)}
+.field-val{font-size:13px;font-weight:500;font-family:var(--mono);text-align:right;min-width:80px;color:var(--ink)}
+.field-val.pos{color:var(--green)}.field-val.neg{color:var(--red)}.field-val.muted{color:var(--ink3)}
 
-.sig{display:inline-flex;align-items:center;font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px}
+.sig{display:inline-flex;font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px}
 .sig.bull{background:var(--green-light);color:var(--green)}
 .sig.bear{background:var(--red-light);color:var(--red)}
 .sig.neut{background:var(--surface3);color:var(--ink3)}
@@ -97,11 +95,9 @@ main{max-width:960px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
 .stars{display:flex;gap:5px;margin-top:6px}
 .star{font-size:22px;cursor:pointer;color:var(--border2);transition:color .15s;user-select:none}
 .star.on{color:#f59e0b}
-
 .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .tag{font-size:12px;padding:3px 10px;border-radius:20px;cursor:pointer;border:1px solid var(--border);color:var(--ink3);background:var(--surface2);transition:all .15s}
 .tag.on{background:var(--blue-light);color:var(--blue);border-color:#a8c4f5}
-
 .dots{display:flex;gap:6px;margin-top:6px}
 .dot-r{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--ink3);background:var(--surface2);transition:all .15s}
 .dot-r.on{background:var(--blue-light);color:var(--blue);border-color:#a8c4f5}
@@ -124,19 +120,19 @@ textarea:focus{border-color:var(--blue)}
 .field-inp:focus{color:var(--blue)}
 select.field-inp{cursor:pointer;font-family:var(--sans)}
 
-.btn-row{display:flex;gap:10px;justify-content:flex-end;margin-top:1.5rem;flex-wrap:wrap}
+.btn-row{display:flex;gap:10px;justify-content:flex-end;margin-top:1.5rem}
 .btn{display:inline-flex;align-items:center;gap:6px;padding:9px 20px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:var(--sans);cursor:pointer;background:var(--surface);color:var(--ink2);transition:all .2s}
 .btn:hover{background:var(--surface3)}
 .btn-primary{background:var(--blue);color:#fff;border-color:var(--blue)}
 .btn-primary:hover{opacity:.88}
 .rr-display{font-size:14px;font-weight:500;font-family:var(--mono);color:var(--blue);margin-top:4px}
 
-.empty-state{text-align:center;padding:3rem 1rem;color:var(--ink3)}
+.empty-state{text-align:center;padding:3rem 1rem}
 .empty-icon{font-size:48px;margin-bottom:1rem;opacity:.3}
 .empty-title{font-size:16px;font-weight:500;color:var(--ink2);margin-bottom:.5rem}
-.empty-sub{font-size:13px;line-height:1.6}
+.empty-sub{font-size:13px;color:var(--ink3);line-height:1.6}
 .sec-head{margin-bottom:1.25rem}
-.sec-head h2{font-size:18px;font-weight:500;color:var(--ink)}
+.sec-head h2{font-size:18px;font-weight:500}
 .sec-head p{font-size:13px;color:var(--ink3);margin-top:3px}
 
 #toast{position:fixed;bottom:2rem;right:2rem;background:var(--ink);color:#fff;padding:10px 20px;border-radius:var(--radius);font-size:13px;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;z-index:999}
@@ -167,11 +163,9 @@ select.field-inp{cursor:pointer;font-family:var(--sans)}
       oninput="this.value=this.value.toUpperCase()">
   </div>
   <button class="fetch-btn" onclick="fetchAll()" id="fetchBtn">ดึงข้อมูล →</button>
-  <div class="nav-right">
-    <div>
-      <div class="score-label">score</div>
-      <div class="score-ring" id="scoreRing">—</div>
-    </div>
+  <div>
+    <div class="score-label">score</div>
+    <div class="score-ring" id="scoreRing">—</div>
   </div>
 </nav>
 
@@ -200,11 +194,12 @@ select.field-inp{cursor:pointer;font-family:var(--sans)}
   <button class="tab" onclick="switchTab('verdict',this)">Verdict</button>
 </div>
 
+<!-- FUNDAMENTAL -->
 <div class="section active" id="fundamental">
   <div id="fundEmpty" class="empty-state">
     <div class="empty-icon">📊</div>
     <div class="empty-title">พิมพ์ชื่อหุ้นแล้วกด "ดึงข้อมูล"</div>
-    <div class="empty-sub">ระบบจะดึงข้อมูลทั้งหมดให้อัตโนมัติ<br>รองรับหุ้นสหรัฐฯ ทุกตัว เช่น AAPL, NVDA, META</div>
+    <div class="empty-sub">ระบบจะดึงข้อมูลให้อัตโนมัติ<br>รองรับหุ้นสหรัฐฯ ทุกตัว เช่น AAPL, NVDA, META</div>
   </div>
   <div id="fundData" style="display:none">
     <div class="g2">
@@ -243,12 +238,13 @@ select.field-inp{cursor:pointer;font-family:var(--sans)}
         <div class="field-row"><span class="field-key">Payout Ratio</span><span class="field-val" id="f-payout">—</span></div>
         <div class="field-row"><span class="field-key">Shares Outstanding</span><span class="field-val" id="f-shares">—</span></div>
         <div class="field-row"><span class="field-key">Beta</span><span class="field-val" id="f-beta">—</span></div>
-        <div class="field-row"><span class="field-key">Sector</span><span class="field-val" id="f-sector" style="font-family:var(--sans);font-size:12px">—</span></div>
+        <div class="field-row"><span class="field-key">Sector</span><span class="field-val muted" id="f-sector" style="font-family:var(--sans);font-size:12px">—</span></div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- TECHNICAL -->
 <div class="section" id="technical">
   <div id="techEmpty" class="empty-state">
     <div class="empty-icon">📈</div>
@@ -296,6 +292,7 @@ select.field-inp{cursor:pointer;font-family:var(--sans)}
   </div>
 </div>
 
+<!-- QUALITATIVE -->
 <div class="section" id="qualitative">
   <div class="sec-head"><h2>Qualitative analysis</h2><p>ประเมินคุณภาพธุรกิจ — กรอกเองครับ</p></div>
   <div class="g2">
@@ -321,8 +318,10 @@ select.field-inp{cursor:pointer;font-family:var(--sans)}
       <div class="card-title">Management & Risk</div>
       <div class="field-row"><span class="field-key">CEO Track Record</span></div>
       <div class="dots" id="ceoDots">
-        <span class="dot-r" onclick="setDots('ceoDots',1)">1</span><span class="dot-r" onclick="setDots('ceoDots',2)">2</span>
-        <span class="dot-r" onclick="setDots('ceoDots',3)">3</span><span class="dot-r" onclick="setDots('ceoDots',4)">4</span>
+        <span class="dot-r" onclick="setDots('ceoDots',1)">1</span>
+        <span class="dot-r" onclick="setDots('ceoDots',2)">2</span>
+        <span class="dot-r" onclick="setDots('ceoDots',3)">3</span>
+        <span class="dot-r" onclick="setDots('ceoDots',4)">4</span>
         <span class="dot-r" onclick="setDots('ceoDots',5)">5</span>
       </div>
       <div style="font-size:12px;color:var(--ink3);margin-top:12px;margin-bottom:4px">Risk Factors</div>
@@ -350,6 +349,7 @@ select.field-inp{cursor:pointer;font-family:var(--sans)}
   </div>
 </div>
 
+<!-- VERDICT -->
 <div class="section" id="verdict">
   <div class="sec-head"><h2>Verdict & Summary</h2></div>
   <div class="sum-grid">
@@ -390,12 +390,22 @@ select.field-inp{cursor:pointer;font-family:var(--sans)}
 <div id="toast"></div>
 
 <script>
+// ── CONFIG ──────────────────────────────────────────────
 const API_KEY = '8IdwNiRth6cCgcsK3yLUwJlgVuJEyJNU';
-const BASE = 'https://financialmodelingprep.com/api/v3';
 const PW = 'stock2025';
+
+// CORS proxy รองรับ GitHub Pages
+const PROXIES = [
+  url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+  url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+  url => `https://cors-anywhere.herokuapp.com/${url}`,
+];
+const BASE = 'https://financialmodelingprep.com/api/v3';
+
 let moatScore=0, verdictVal='', currentPrice=0;
 let fundScore=0, techScore=0, qualScore=0;
 
+// ── AUTH ────────────────────────────────────────────────
 function checkPw(){
   if(document.getElementById('pwInput').value.trim()===PW){
     document.getElementById('gate').style.display='none';
@@ -404,6 +414,8 @@ function checkPw(){
     document.getElementById('gateErr').style.display='block';
   }
 }
+
+// ── ROUTING ─────────────────────────────────────────────
 function switchTab(id,btn){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -411,78 +423,98 @@ function switchTab(id,btn){
   btn.classList.add('active');
 }
 function setProgress(p){document.getElementById('loadBar').style.width=p+'%'}
-async function api(path){
-  const sep=path.includes('?')?'&':'?';
-  const r=await fetch(BASE+path+sep+'apikey='+API_KEY);
-  if(!r.ok) throw new Error('API '+r.status);
-  return r.json();
-}
-function fmt(n,d=2,s=''){
-  if(n===null||n===undefined||isNaN(n)||n==='')return '—';
-  return (+n).toFixed(d)+s;
-}
-function fmtB(n){
-  if(!n)return '—';
-  const a=Math.abs(n);
-  if(a>=1e12)return (n/1e12).toFixed(2)+'T';
-  if(a>=1e9)return (n/1e9).toFixed(2)+'B';
-  if(a>=1e6)return (n/1e6).toFixed(2)+'M';
-  return (+n).toFixed(0);
-}
-function setVal(id,val,cls=''){
-  const el=document.getElementById(id);
-  if(!el)return;
-  el.textContent=val;
-  el.className='field-val'+(cls?' '+cls:'');
-}
-function cp(n){return n>0?'pos':n<0?'neg':'neutral'}
 
+// ── API (ลอง proxy ทีละตัวถ้า fail) ───────────────────
+async function apiFetch(path){
+  const fullUrl = BASE + path + (path.includes('?')?'&':'?') + 'apikey=' + API_KEY;
+  // ลอง direct ก่อน (ถ้าไม่ใช่ GitHub Pages)
+  const attempts = [fullUrl, ...PROXIES.map(p=>p(fullUrl))];
+  for(const url of attempts){
+    try{
+      const r = await fetch(url, {headers:{'X-Requested-With':'XMLHttpRequest'}});
+      if(!r.ok) continue;
+      const data = await r.json();
+      if(data && !data.error) return data;
+    } catch(e){ continue; }
+  }
+  throw new Error('ไม่สามารถดึงข้อมูลได้');
+}
+
+// ── FETCH ALL ───────────────────────────────────────────
 async function fetchAll(){
-  const ticker=document.getElementById('tickerInput').value.trim().toUpperCase();
+  const ticker = document.getElementById('tickerInput').value.trim().toUpperCase();
   if(!ticker){toast('ใส่ชื่อหุ้นก่อนครับ');return}
-  const btn=document.getElementById('fetchBtn');
-  btn.disabled=true; btn.textContent='กำลังดึง...'; setProgress(10);
+  const btn = document.getElementById('fetchBtn');
+  btn.disabled=true; btn.textContent='กำลังดึง...'; setProgress(15);
   try{
-    const [quote,profile,ratios,income,rsiD,macdD,s20D,s50D,s200D,e20D,atrD,bbD]=await Promise.all([
-      api(`/quote/${ticker}`),
-      api(`/profile/${ticker}`),
-      api(`/ratios-ttm/${ticker}`),
-      api(`/income-statement/${ticker}?limit=2`),
-      api(`/technical_indicator/daily/${ticker}?type=rsi&period=14&limit=1`),
-      api(`/technical_indicator/daily/${ticker}?type=macd&period=12&limit=1`),
-      api(`/technical_indicator/daily/${ticker}?type=sma&period=20&limit=1`),
-      api(`/technical_indicator/daily/${ticker}?type=sma&period=50&limit=1`),
-      api(`/technical_indicator/daily/${ticker}?type=sma&period=200&limit=1`),
-      api(`/technical_indicator/daily/${ticker}?type=ema&period=20&limit=1`),
-      api(`/technical_indicator/daily/${ticker}?type=atr&period=14&limit=1`),
-      api(`/technical_indicator/daily/${ticker}?type=standardDeviation&period=20&limit=1`),
+    // ดึงข้อมูลหลักก่อน
+    const [quote, profile, ratios, income] = await Promise.all([
+      apiFetch(`/quote/${ticker}`),
+      apiFetch(`/profile/${ticker}`),
+      apiFetch(`/ratios-ttm/${ticker}`),
+      apiFetch(`/income-statement/${ticker}?limit=2`),
     ]);
-    setProgress(85);
-    if(!quote||!quote[0]){toast('ไม่พบหุ้น "'+ticker+'" ลองใหม่นะครับ');setProgress(0);return}
-    const q=quote[0],p=profile[0],r=ratios[0],inc=income;
-    renderHeader(q,p);
-    renderFund(q,p,r,inc);
-    renderTech(q,rsiD[0],macdD[0],s20D[0],s50D[0],s200D[0],e20D[0],atrD[0],bbD[0]);
+    setProgress(50);
+    if(!quote||!quote[0]){toast('ไม่พบหุ้น "'+ticker+'" กรุณาตรวจสอบชื่อ');setProgress(0);return}
+
+    // ดึงข้อมูล technical
+    const [rsiD,macdD,s20D,s50D,s200D,e20D,atrD,bbD] = await Promise.all([
+      apiFetch(`/technical_indicator/daily/${ticker}?type=rsi&period=14&limit=1`),
+      apiFetch(`/technical_indicator/daily/${ticker}?type=macd&period=12&limit=1`),
+      apiFetch(`/technical_indicator/daily/${ticker}?type=sma&period=20&limit=1`),
+      apiFetch(`/technical_indicator/daily/${ticker}?type=sma&period=50&limit=1`),
+      apiFetch(`/technical_indicator/daily/${ticker}?type=sma&period=200&limit=1`),
+      apiFetch(`/technical_indicator/daily/${ticker}?type=ema&period=20&limit=1`),
+      apiFetch(`/technical_indicator/daily/${ticker}?type=atr&period=14&limit=1`),
+      apiFetch(`/technical_indicator/daily/${ticker}?type=standardDeviation&period=20&limit=1`),
+    ]);
+    setProgress(90);
+
+    renderHeader(quote[0], profile[0]);
+    renderFund(quote[0], profile[0], ratios[0], income);
+    renderTech(quote[0], rsiD[0], macdD[0], s20D[0], s50D[0], s200D[0], e20D[0], atrD[0], bbD[0]);
     updateScore();
     setProgress(100);
     toast('ดึงข้อมูล '+ticker+' สำเร็จ ✓');
-    setTimeout(()=>setProgress(0),800);
-  }catch(e){
-    toast('เกิดข้อผิดพลาด กรุณาลองใหม่');
+    setTimeout(()=>setProgress(0), 800);
+  } catch(e){
+    toast('เกิดข้อผิดพลาด: '+e.message);
     setProgress(0);
   }
   btn.disabled=false; btn.textContent='ดึงข้อมูล →';
 }
 
+// ── HELPERS ─────────────────────────────────────────────
+function fmt(n,d=2,s=''){
+  if(n===null||n===undefined||n===''||isNaN(n)) return '—';
+  return (+n).toFixed(d)+s;
+}
+function fmtB(n){
+  if(!n||isNaN(n)) return '—';
+  const a=Math.abs(n);
+  if(a>=1e12) return (n/1e12).toFixed(2)+'T';
+  if(a>=1e9)  return (n/1e9).toFixed(2)+'B';
+  if(a>=1e6)  return (n/1e6).toFixed(2)+'M';
+  return (+n).toFixed(0);
+}
+function setVal(id,val,cls=''){
+  const el=document.getElementById(id);
+  if(!el) return;
+  el.textContent=val;
+  el.className='field-val'+(cls?' '+cls:'');
+}
+function cp(n){ return n>0?'pos':n<0?'neg':'muted' }
+
+// ── RENDER HEADER ────────────────────────────────────────
 function renderHeader(q,p){
   currentPrice=q.price||0;
   document.getElementById('hName').textContent=q.name||q.symbol;
   document.getElementById('hSector').textContent=(p?.sector||'')+(p?.exchange?' · '+p.exchange:'');
   document.getElementById('hPrice').textContent='$'+fmt(q.price,2);
   const chg=q.changesPercentage||0;
-  const el=document.getElementById('hChange');
-  el.textContent=(chg>=0?'+':'')+fmt(chg,2)+'%';
-  el.className='stock-change '+(chg>=0?'up':'dn');
+  const cel=document.getElementById('hChange');
+  cel.textContent=(chg>=0?'+':'')+fmt(chg,2)+'%';
+  cel.className='stock-change '+(chg>=0?'up':'dn');
   document.getElementById('hMcap').textContent=fmtB(q.marketCap);
   document.getElementById('h52h').textContent='$'+fmt(q.yearHigh,2);
   document.getElementById('h52l').textContent='$'+fmt(q.yearLow,2);
@@ -491,84 +523,108 @@ function renderHeader(q,p){
   document.getElementById('v-price').textContent='$'+fmt(q.price,2);
 }
 
+// ── RENDER FUNDAMENTAL ───────────────────────────────────
 function renderFund(q,p,r,inc){
   document.getElementById('fundEmpty').style.display='none';
   document.getElementById('fundData').style.display='block';
+
   const pe=r?.peRatioTTM;
-  setVal('f-pe',fmt(pe,1),pe?pe<20?'pos':pe>40?'neg':'':'');
+  setVal('f-pe',fmt(pe,1), pe?pe<20?'pos':pe>40?'neg':'':'');
   setVal('f-fpe',fmt(r?.priceEarningsRatioTTM,1));
   const peg=r?.pegRatioTTM;
-  setVal('f-peg',fmt(peg,2),peg?peg<1?'pos':peg>2?'neg':'':'');
+  setVal('f-peg',fmt(peg,2), peg?peg<1?'pos':peg>2?'neg':'':'');
   setVal('f-ps',fmt(r?.priceToSalesRatioTTM,1));
   setVal('f-ev',fmt(r?.enterpriseValueMultipleTTM,1));
-  const revg=inc&&inc[0]&&inc[1]&&inc[1].revenue?(inc[0].revenue-inc[1].revenue)/Math.abs(inc[1].revenue)*100:null;
-  setVal('f-revg',revg!==null?fmt(revg,1)+'%':'—',revg!==null?cp(revg):'');
-  const epsg=inc&&inc[0]&&inc[1]&&inc[1].eps?(inc[0].eps-inc[1].eps)/Math.abs(inc[1].eps)*100:null;
-  setVal('f-epsg',epsg!==null?fmt(epsg,1)+'%':'—',epsg!==null?cp(epsg):'');
+
+  const revg = inc&&inc[0]&&inc[1]&&inc[1].revenue
+    ? (inc[0].revenue-inc[1].revenue)/Math.abs(inc[1].revenue)*100 : null;
+  setVal('f-revg', revg!==null?fmt(revg,1)+'%':'—', revg!==null?cp(revg):'');
+  const epsg = inc&&inc[0]&&inc[1]&&inc[1].eps
+    ? (inc[0].eps-inc[1].eps)/Math.abs(inc[1].eps)*100 : null;
+  setVal('f-epsg', epsg!==null?fmt(epsg,1)+'%':'—', epsg!==null?cp(epsg):'');
+
   const gm=(r?.grossProfitMarginTTM||0)*100;
-  setVal('f-gm',fmt(gm,1)+'%',gm>50?'pos':gm<20?'neg':'');
+  setVal('f-gm',fmt(gm,1)+'%', gm>50?'pos':gm<20?'neg':'');
   const om=(r?.operatingProfitMarginTTM||0)*100;
-  setVal('f-om',fmt(om,1)+'%',cp(om));
+  setVal('f-om',fmt(om,1)+'%', cp(om));
   const nm=(r?.netProfitMarginTTM||0)*100;
-  setVal('f-nm',fmt(nm,1)+'%',cp(nm));
+  setVal('f-nm',fmt(nm,1)+'%', cp(nm));
+
   const de=r?.debtEquityRatioTTM;
-  setVal('f-de',fmt(de,2),de?de<1?'pos':de>2?'neg':'':'');
+  setVal('f-de',fmt(de,2), de?de<1?'pos':de>2?'neg':'':'');
   setVal('f-cr',fmt(r?.currentRatioTTM,2));
   setVal('f-fcf',fmtB(r?.freeCashFlowPerShareTTM));
   const roe=(r?.returnOnEquityTTM||0)*100;
-  setVal('f-roe',fmt(roe,1)+'%',roe>15?'pos':roe<5?'neg':'');
+  setVal('f-roe',fmt(roe,1)+'%', roe>15?'pos':roe<5?'neg':'');
   setVal('f-roic',fmt((r?.returnOnCapitalEmployedTTM||0)*100,1)+'%');
   setVal('f-div',fmt((r?.dividendYielTTM||0)*100,2)+'%');
   setVal('f-payout',fmt((r?.payoutRatioTTM||0)*100,1)+'%');
   setVal('f-shares',fmtB(q.sharesOutstanding));
   setVal('f-beta',fmt(p?.beta,2));
   const secEl=document.getElementById('f-sector');
-  if(secEl){secEl.textContent=p?.sector||'—';secEl.className='field-val neutral'}
+  if(secEl){secEl.textContent=p?.sector||'—'}
 
+  // คะแนน fundamental
   fundScore=0;
   if(pe){if(pe<15)fundScore+=10;else if(pe<25)fundScore+=7;else if(pe<40)fundScore+=4;else fundScore+=1}
   if(peg){if(peg<1)fundScore+=5;else if(peg<2)fundScore+=3;else fundScore+=1}
   if(revg!=null){if(revg>20)fundScore+=10;else if(revg>10)fundScore+=7;else if(revg>0)fundScore+=4}
   if(gm){if(gm>50)fundScore+=8;else if(gm>30)fundScore+=5;else fundScore+=2}
   if(de){if(de<0.5)fundScore+=7;else if(de<1.5)fundScore+=4;else fundScore+=1}
-  if(nm>0)fundScore+=5;
+  if(nm>0) fundScore+=5;
   if(roe>20)fundScore+=5;else if(roe>10)fundScore+=3;
   fundScore=Math.min(40,fundScore);
 
   const vs=document.getElementById('valSig');
-  if(pe){if(pe<20){vs.className='sig bull';vs.textContent='Valuation: cheap'}else if(pe<35){vs.className='sig neut';vs.textContent='Valuation: fair'}else{vs.className='sig bear';vs.textContent='Valuation: pricey'}}
+  if(pe){if(pe<20){vs.className='sig bull';vs.textContent='Valuation: cheap'}
+  else if(pe<35){vs.className='sig neut';vs.textContent='Valuation: fair'}
+  else{vs.className='sig bear';vs.textContent='Valuation: pricey'}}
+
   const gs=document.getElementById('growSig');
-  if(revg!=null){if(revg>15){gs.className='sig bull';gs.textContent='Growth: strong'}else if(revg>0){gs.className='sig neut';gs.textContent='Growth: moderate'}else{gs.className='sig bear';gs.textContent='Growth: slowing'}}
+  if(revg!=null){if(revg>15){gs.className='sig bull';gs.textContent='Growth: strong'}
+  else if(revg>0){gs.className='sig neut';gs.textContent='Growth: moderate'}
+  else{gs.className='sig bear';gs.textContent='Growth: slowing'}}
+
   const hs=document.getElementById('healthSig');
-  if(de){if(de<1){hs.className='sig bull';hs.textContent='Health: strong'}else if(de<2){hs.className='sig neut';hs.textContent='Health: ok'}else{hs.className='sig bear';hs.textContent='Health: leveraged'}}
+  if(de){if(de<1){hs.className='sig bull';hs.textContent='Health: strong'}
+  else if(de<2){hs.className='sig neut';hs.textContent='Health: ok'}
+  else{hs.className='sig bear';hs.textContent='Health: leveraged'}}
 }
 
+// ── RENDER TECHNICAL ─────────────────────────────────────
 function renderTech(q,rsi,macd,s20,s50,s200,e20,atr,bb){
   document.getElementById('techEmpty').style.display='none';
   document.getElementById('techData').style.display='block';
+
   const rv=rsi?.rsi;
-  setVal('t-rsi',fmt(rv,1),rv?rv<30?'pos':rv>70?'neg':'':'');
-  if(rv){const f=document.getElementById('rsiFill');f.style.width=Math.min(100,rv)+'%';f.style.background=rv<30?'#c5221f':rv>70?'#14803c':'#1a56db'}
-  const ml=macd?.macd,ms=macd?.signal;
-  setVal('t-macd',fmt(ml,3),ml?cp(ml):'');
+  setVal('t-rsi',fmt(rv,1), rv?rv<30?'pos':rv>70?'neg':'':'');
+  if(rv){
+    const f=document.getElementById('rsiFill');
+    f.style.width=Math.min(100,rv)+'%';
+    f.style.background=rv<30?'#c5221f':rv>70?'#14803c':'#1a56db';
+  }
+  const ml=macd?.macd, ms=macd?.signal;
+  setVal('t-macd',fmt(ml,3), ml?cp(ml):'');
   setVal('t-macdsig',fmt(ms,3));
   setVal('t-sma20',fmt(s20?.sma,2));
   setVal('t-sma50',fmt(s50?.sma,2));
   setVal('t-sma200',fmt(s200?.sma,2));
   setVal('t-ema20',fmt(e20?.ema,2));
-  const price=q.price;
-  const std=bb?.standardDeviation||0;
+
+  const price=q.price, std=bb?.standardDeviation||0;
   setVal('t-bbu',fmt(price+std*2,2));
   setVal('t-bbm',fmt(price,2));
   setVal('t-bbl',fmt(price-std*2,2));
   setVal('t-atr',fmt(atr?.atr,2));
   setVal('t-52h','$'+fmt(q.yearHigh,2));
   setVal('t-52l','$'+fmt(q.yearLow,2));
-  const vs52=q.yearHigh?(price-q.yearHigh)/q.yearHigh*100:null;
-  setVal('t-vs52h',vs52!=null?fmt(vs52,1)+'%':'—',vs52!=null?cp(vs52):'');
-  const vsSma=s200?.sma?(price-s200.sma)/s200.sma*100:null;
-  setVal('t-vssma',vsSma!=null?fmt(vsSma,1)+'%':'—',vsSma!=null?cp(vsSma):'');
 
+  const vs52=q.yearHigh?(price-q.yearHigh)/q.yearHigh*100:null;
+  setVal('t-vs52h',vs52!=null?fmt(vs52,1)+'%':'—', vs52!=null?cp(vs52):'');
+  const vsSma=s200?.sma?(price-s200.sma)/s200.sma*100:null;
+  setVal('t-vssma',vsSma!=null?fmt(vsSma,1)+'%':'—', vsSma!=null?cp(vsSma):'');
+
+  // คะแนน technical
   techScore=0;
   if(rv){if(rv>30&&rv<70)techScore+=15;else techScore+=5}
   if(s50?.sma&&s200?.sma){
@@ -576,16 +632,27 @@ function renderTech(q,rsi,macd,s20,s50,s200,e20,atr,bb){
     if(s50.sma>s200.sma){ma.className='sig bull';ma.textContent='Golden Cross ↑';techScore+=15}
     else{ma.className='sig bear';ma.textContent='Death Cross ↓';techScore+=3}
   }
-  if(ml&&ms&&ml>ms)techScore+=5;
+  if(ml&&ms&&ml>ms) techScore+=5;
   techScore=Math.min(30,techScore);
 
   const mo=document.getElementById('momSigs'); mo.innerHTML='';
-  if(rv){const b=document.createElement('span');b.className='sig '+(rv<30?'bull':rv>70?'bear':'neut');b.textContent='RSI: '+(rv<30?'Oversold':rv>70?'Overbought':'Neutral');mo.appendChild(b)}
-  if(ml&&ms){const b=document.createElement('span');b.className='sig '+(ml>ms?'bull':'bear');b.textContent='MACD: '+(ml>ms?'Bullish':'Bearish');mo.appendChild(b)}
+  if(rv){
+    const b=document.createElement('span');
+    b.className='sig '+(rv<30?'bull':rv>70?'bear':'neut');
+    b.textContent='RSI: '+(rv<30?'Oversold':rv>70?'Overbought':'Neutral');
+    mo.appendChild(b);
+  }
+  if(ml&&ms){
+    const b=document.createElement('span');
+    b.className='sig '+(ml>ms?'bull':'bear');
+    b.textContent='MACD: '+(ml>ms?'Bullish':'Bearish');
+    mo.appendChild(b);
+  }
 }
 
+// ── SCORE & UI ───────────────────────────────────────────
 function updateScore(){
-  qualScore=Math.min(30,moatScore*5+3);
+  qualScore=Math.min(30, moatScore*5+3);
   const total=fundScore+techScore+qualScore;
   document.getElementById('vFund').textContent=fundScore||'—';
   document.getElementById('vTech').textContent=techScore||'—';
@@ -597,17 +664,23 @@ function updateScore(){
   }
 }
 function calcRR(){
-  const p=currentPrice,pt=parseFloat(document.getElementById('pt').value),sl=parseFloat(document.getElementById('sl').value);
+  const p=currentPrice, pt=parseFloat(document.getElementById('pt').value), sl=parseFloat(document.getElementById('sl').value);
   const el=document.getElementById('rrDisplay');
-  if(p&&pt&&sl&&(p-sl)>0)el.textContent='R:R = 1 : '+((pt-p)/(p-sl)).toFixed(1);
+  if(p&&pt&&sl&&(p-sl)>0) el.textContent='R:R = 1 : '+((pt-p)/(p-sl)).toFixed(1);
   else el.textContent='';
 }
-function setMoat(n){moatScore=n;document.querySelectorAll('#moatStars .star').forEach((s,i)=>s.classList.toggle('on',i<n));updateScore()}
+function setMoat(n){
+  moatScore=n;
+  document.querySelectorAll('#moatStars .star').forEach((s,i)=>s.classList.toggle('on',i<n));
+  updateScore();
+}
 function toggleTag(el){el.classList.toggle('on')}
 function setDots(id,n){document.querySelectorAll('#'+id+' .dot-r').forEach((d,i)=>d.classList.toggle('on',i<n))}
 function setVerdict(v){
   verdictVal=v;
-  ['buy','hold','sell'].forEach(x=>{document.getElementById('v'+x.charAt(0).toUpperCase()+x.slice(1)).className='vbtn'+(v===x?' '+x:'')});
+  ['buy','hold','sell'].forEach(x=>{
+    document.getElementById('v'+x.charAt(0).toUpperCase()+x.slice(1)).className='vbtn'+(v===x?' '+x:'');
+  });
 }
 function copyReport(){
   const ticker=document.getElementById('tickerInput').value||'N/A';
@@ -620,7 +693,8 @@ function copyReport(){
   let rep=`📊 STOCK ANALYSIS — $${ticker}\n${'─'.repeat(30)}\n`;
   rep+=`คะแนนรวม : ${score}/100\n`;
   rep+=`Fundamental : ${fundScore}/40 | Technical : ${techScore}/30 | Qualitative : ${qualScore}/30\n\n`;
-  rep+=`Price : $${currentPrice?currentPrice.toFixed(2):'—'}\nPrice Target : $${pt} | Stop Loss : $${sl}\n${rr}\n\n`;
+  rep+=`Price : $${currentPrice?currentPrice.toFixed(2):'—'}\n`;
+  rep+=`Price Target : $${pt} | Stop Loss : $${sl}\n${rr}\n\n`;
   rep+=`Investment Thesis:\n${thesis}\n\nVerdict : ${verdictVal?verdictVal.toUpperCase():'—'}\n${note}\n`;
   rep+=`${'─'.repeat(30)}\n⚠️ เพื่อการศึกษาเท่านั้น ไม่ใช่คำแนะนำลงทุน`;
   navigator.clipboard.writeText(rep).then(()=>toast('Copied! 📋'));
@@ -643,7 +717,7 @@ function clearAll(){
 }
 function toast(msg){
   const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
+  t.textContent=msg; t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2500);
 }
 </script>
